@@ -66,7 +66,7 @@
         <repository>
             <id>deploymentRepo</id>
 			<name>maven-central-repository</name>
-                <url>http://192.168.1.48:8081/repository/maven-central-repository/</url>
+                <url>http://192.168.1.124:8081/repository/maven-central-repository/</url>
         </repository>
     </distributionManagement>
 
