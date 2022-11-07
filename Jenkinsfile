@@ -6,10 +6,11 @@ pipeline {
   stages {
       stage("GIT CHECKOUT") {
             steps {
-                script {
-                    git 'https://github.com/sanhejimaryem/Devops.git'
-                }
+            
+                echo 'Pulliing ...';
+                git branch: 'maryem', url: 'https://github.com/sanhejimaryem/Devops.git'          
             }
+            
         }
     stage('MVN COMPILE') {
       steps {
