@@ -90,6 +90,12 @@ pipeline {
 
     }
     }
+    stage("docker compose ekhdem aman"){
+      steps {
+        sh 'docker-compose up'
+      }
+      
+    }
 }
 
 }
