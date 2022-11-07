@@ -72,6 +72,24 @@ pipeline {
             }
             
         }
+    stage("Docker build"){
+         steps {
+         sh 'docker version'
+         sh 'docker build -t esprit .'
+         sh 'docker image list'
+         sh 'docker tag esprit maryemsanheji/cicd:1.8'
+        
+        withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
+            sh 'docker login -u maryemsanheji -p $PASSWORD'
+        }
+       }
+  }
+    stage("Push Image to Docker Hub"){
+      steps {
+       sh 'docker push  maryemsanheji/cicd:1.8'
+
+    }
+    }
 }
 
 }
