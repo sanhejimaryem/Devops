@@ -51,7 +51,7 @@ pipeline {
                             protocol: 'http',
                             nexusUrl: '192.168.1.48:8081',
                             groupId: 'pom.tn.esprit.rh',
-                            version: 'pom.5.0',
+                            version: 'pom.1.9',
                             repository: 'maven-central-repository',
                             credentialsId: 'nexus',
                             artifacts: [
@@ -77,7 +77,7 @@ pipeline {
          sh 'docker version'
          sh 'docker build -t esprit .'
          sh 'docker image list'
-         sh 'docker tag esprit maryemsanheji/cicd:1.8'
+         sh 'docker tag esprit maryemsanheji/cicd:1.9'
         
         withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
             sh 'docker login -u maryemsanheji -p $PASSWORD'
@@ -86,7 +86,7 @@ pipeline {
   }
     stage("Push Image to Docker Hub"){
       steps {
-       sh 'docker push  maryemsanheji/cicd:1.8'
+       sh 'docker push  maryemsanheji/cicd:1.9'
 
     }
     }
