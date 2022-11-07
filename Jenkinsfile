@@ -49,7 +49,7 @@ pipeline {
                         nexusArtifactUploader(
                             nexusVersion: 'nexus3',
                             protocol: 'http',
-                            nexusUrl: '192.168.1.48:8081',
+                            nexusUrl: '192.168.1.124:8081',
                             groupId: 'pom.tn.esprit.rh',
                             version: 'pom.1.9',
                             repository: 'maven-central-repository',
