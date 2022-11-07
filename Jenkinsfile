@@ -50,8 +50,7 @@ pipeline {
                             nexusVersion: 'nexus3',
                             protocol: 'http',
                             nexusUrl: '192.168.1.124:8081',
-                            groupId: 'pom.tn.esprit.rh',
-                            version: 'pom.1.9',
+                            groupId: 'pom.2.2',
                             repository: 'maven-central-repository',
                             credentialsId: 'nexus',
                             artifacts: [
