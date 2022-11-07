@@ -86,16 +86,12 @@ pipeline {
   }
     stage("Push Image to Docker Hub"){
       steps {
-       sh 'docker push  maryemsanheji/cicd:1.9'
+       // sh 'docker push  maryemsanheji/cicd:1.9'
+        sh 'docker-compose up'
 
     }
     }
-    stage("docker compose ekhdem aman"){
-      steps {
-        sh 'docker-compose up'
-      }
-      
-    }
+ 
 }
 
 }
