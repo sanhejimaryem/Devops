@@ -1,23 +1,25 @@
-version: '3.3'
+version: "3"
+
 services:
   mysqldb:
-    image: 'mysql:5.7'
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_PASSWORD=
-      - MYSQL_DATABASE=achatdb
-    ports:
-      - "3307:3306"
-  springboot-docker-container:
-    image: maryem/meriemprojetcicd:latest
-    ports:
-      - "8089:8089"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/achatdb?createDatabaseifNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-      SPRING_DATASOURCE_USERNAME: "root"
-      SPRING_DATASOURCE_PASSWORD: ""
-    build:
-      context: "./"
-      dockerfile: "Dockerfile"
-    depends_on:
-      - mysqldb
+   container_name: mysqldb
+   image: mysql:8
+   restart: unless-stopped
+   ports:
+    - 3307:3306
+   environment:
+    MYSQL_DATABASE: achatdb
+    MYSQL_ROOT_PASSWORD: password
+   volumes:
+     - /home/mysql/data:/var/lib/mysql --user 1000
+
+  spring_app:
+   image: maryemsanheji/cicd
+   container_name: achatprojet
+   restart: on-failure
+   ports:
+    - 8089:8089
+   environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/achatdb?allowPublicKeyRetrieval=true&useSSL=false
+   depends_on:
+    - mysqldb 
